@@ -1,0 +1,11 @@
+<h4>Новый склад</h4>
+
+<%= form_with model: @warehouse, local: true do |form| %>
+  <div class="field">
+    <%= form.label :name, "Название склада" %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= form.submit "Создать склад" %>
+  </div>
+<% end %>

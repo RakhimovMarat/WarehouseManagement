@@ -1,12 +1,12 @@
-<h4>All users</h4>
+<h4>Все пользователи</h4>
 
 <% @users.each do |user| %>
   <p>
     <li>
-      Username: <%= user.username %>
+      Имя: <%= user.username %>
     </li>
     <li>
-      Admin: <%= user.admin %>
+      Админ: <%= user.admin %>
     </li>
   </p>
 <% end %>
