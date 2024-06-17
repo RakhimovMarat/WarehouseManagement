@@ -1,0 +1,12 @@
+<h4>All users</h4>
+
+<% @users.each do |user| %>
+  <p>
+    <li>
+      Username: <%= user.username %>
+    </li>
+    <li>
+      Admin: <%= user.admin %>
+    </li>
+  </p>
+<% end %>
