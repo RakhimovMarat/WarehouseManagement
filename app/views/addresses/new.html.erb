@@ -1,0 +1,17 @@
+<h4>Новый адрес</h4>
+
+<%= form_with model: @address, local: true do |form| %>
+  <div class="field">
+    <%= form.label :name, "Адрес" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :warehouse_id, "Склад" %>
+    <%= form.collection_select :warehouse_id, @warehouses, :id, :name, prompt: 'Выберите склад' %>
+  </div>
+  
+  <div class="actions">
+    <%= form.submit "Создать адрес" %>
+  </div>
+<% end %>

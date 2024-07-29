@@ -3,6 +3,8 @@ class Warehouse < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
 
+  has_many :addresses
+
   private
 
   def capitalize_name
