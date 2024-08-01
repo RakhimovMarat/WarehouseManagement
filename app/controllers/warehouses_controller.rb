@@ -22,6 +22,10 @@ class WarehousesController < ApplicationController
 
   def show; end
 
+  def addresses
+    @addresses = Address.where(warehouse_id: params[:id])
+  end
+
   private
 
   def warehouse_params

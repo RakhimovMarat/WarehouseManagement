@@ -11,7 +11,9 @@ Rails.application.routes.draw do
 
   authenticate :user do
     resources :users
-    resources :warehouses
+    resources :warehouses do
+      get :addresses, on: :member
+    end
     resources :addresses
   end
 end

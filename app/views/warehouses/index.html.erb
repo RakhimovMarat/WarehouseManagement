@@ -2,6 +2,6 @@
 
 <% @warehouses.each do |warehouse| %>
   <p>
-    <%= warehouse.name %>
+    <%= link_to warehouse.name, addresses_warehouse_path(warehouse) %>
   </p>
 <% end %>
