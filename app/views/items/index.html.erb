@@ -1,0 +1,11 @@
+<h4>Все товары</h4>
+
+<% @items.each do |item| %>
+  <p>
+    <%= item.number %>
+  </p>
+
+  <p>
+    <%= item.description %>
+  </p>
+<% end %>

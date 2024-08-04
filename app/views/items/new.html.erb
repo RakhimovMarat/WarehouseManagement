@@ -1,0 +1,17 @@
+<h4>Новый товар</h4>
+
+<%= form_with model: @item, url: items_path, method: :post, local: true do |form| %>
+  <div class="field">
+    <%= form.label :number, "Товар" %>
+    <%= form.text_field :number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description, "Наименование" %>
+    <%= form.text_field :description %>
+  </div>
+  
+  <div class="actions">
+    <%= form.submit "Создать товар" %>
+  </div>
+<% end %>
