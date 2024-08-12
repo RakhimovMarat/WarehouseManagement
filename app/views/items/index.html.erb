@@ -1,11 +1,20 @@
 <h4>Все товары</h4>
 
-<% @items.each do |item| %>
-  <p>
-    <%= item.number %>
-  </p>
-
-  <p>
-    <%= item.description %>
-  </p>
-<% end %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th>Description</th>
+      <th>Address</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item.number %></td>
+        <td><%= item.description %></td>
+        <td><%= item.address.try(:name) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

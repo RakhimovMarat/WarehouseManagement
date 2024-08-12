@@ -15,6 +15,9 @@ Rails.application.routes.draw do
       get :addresses, on: :member
     end
     resources :addresses
-    resources :items
+    resources :items do
+      get :add_address, on: :member
+      patch :add_address
+    end
   end
 end
