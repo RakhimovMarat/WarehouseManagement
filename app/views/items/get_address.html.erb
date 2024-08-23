@@ -1,6 +1,6 @@
 <h4>Размещение в адресную ячейку</h4>
 
-<%= form_with model: @item, url: add_address_item_path(@item) do |form| %>
+<%= form_with model: @item, url: put_item_on_address_item_path(@item), method: :patch do |form| %>
   <div class="field">
     <%= form.label :address_id, "Адресная ячейка" %>
     <%= form.collection_select :address_id, @addresses, :id, :name, prompt: 'Выберите ячейку' %>

@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :find_item, only: %i[show add_address]
+  before_action :find_item, only: %i[show get_address put_item_on_address]
 
   def index
     @items = Item.all
@@ -22,10 +22,14 @@ class ItemsController < ApplicationController
 
   def show; end
 
-  def add_address
-    @addresses = Address.all
+  def get_address
+    @addresses = Address.where.missing(:items)
+  end
+
+  def put_item_on_address
     address_id = params[:item]&.dig(:address_id)
     @item.update(address_id: address_id)
+    redirect_to @item
   end
 
   private
