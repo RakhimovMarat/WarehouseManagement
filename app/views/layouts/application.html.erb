@@ -8,9 +8,26 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/js/bootstrap.min.js"></script>
+
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'include/main_menu' %>
+    <br>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <%= render 'include/notification' %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

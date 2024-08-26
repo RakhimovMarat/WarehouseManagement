@@ -69,5 +69,6 @@ end
 gem "devise", "~> 4.9"
 
 gem 'bootstrap'
-
+gem 'mini_racer'
 gem 'sassc-rails'
+gem 'popper_js'
