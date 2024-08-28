@@ -1,11 +1,14 @@
 <h4>Новый склад</h4>
-
+<br />
 <%= form_with model: @warehouse, local: true do |form| %>
   <div class="field">
-    <%= form.label :name, "Название склада" %>
-    <%= form.text_field :name %>
+    <p>
+      <%= form.text_field :name, placeholder: "Введите название склада" %>
+    </p>
   </div>
   <div class="actions">
-    <%= form.submit "Создать склад" %>
+    <p>
+      <%= form.submit "Создать склад" %>
+    </p>
   </div>
 <% end %>

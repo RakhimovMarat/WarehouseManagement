@@ -1,0 +1,9 @@
+<h4>Информация "<%= @warehouse.name %>"</h4>
+<br />
+<p>
+  <%= link_to 'Адреса', addresses_warehouse_path, method: :get %>
+</p>
+
+<p>
+  <%= link_to 'Добавить деталь', get_item_warehouse_path, method: :get %>
+</p>  

@@ -1,7 +1,7 @@
 <h4>Все склады</h4>
-
+<br />
 <% @warehouses.each do |warehouse| %>
   <p>
-    <%= link_to warehouse.name, addresses_warehouse_path(warehouse) %>
+    <%= link_to warehouse.name, information_warehouse_path(warehouse) %>
   </p>
 <% end %>

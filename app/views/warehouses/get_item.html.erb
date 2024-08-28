@@ -1,0 +1,21 @@
+<h4>Размещение товара в адресную ячейку</h4>
+<br />
+<%= form_with model: @warehouse, url: add_item_to_address_warehouse_path(@warehouse), method: :patch do |form| %>
+  <div class="field">
+    <p>
+      <%= form.collection_select :item_id, @items, :id, :number, prompt: "Выберите товар" %>
+    </p>  
+  </div>
+
+  <div class="field">
+    <p>
+      <%= form.collection_select :address_id, @addresses, :id, :name, prompt: "Выберите адрес" %>
+    </p>  
+  </div>
+  
+  <div class="actions">
+    <p>
+      <%= form.submit "Разместить" %>
+    </p>  
+  </div>
+<% end %>

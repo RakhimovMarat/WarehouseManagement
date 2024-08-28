@@ -1,17 +1,43 @@
 <% if user_signed_in? %>
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container">
-      <a class="navbar-brand" href="<%=  %>">Центр пропусков</a>
+      <a class="navbar-brand" href="<%=  %>">Поиск</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div id="navbarSupportedContent" class="collapse navbar-collapse">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="<%=  %>">Новый пропуск</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Склад
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <%= link_to "Все склады", warehouses_path, class: "btn btn-link dropdown-item" %>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li>
+                <%= link_to "Создать склад", new_warehouse_path, class: "btn btn-link dropdown-item" %>
+              </li>
+            </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Товар
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <%= link_to "Все товары", items_path, class: "btn btn-link dropdown-item" %>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li>
+                <%= link_to "Создать товар", new_item_path, class: "btn btn-link dropdown-item" %>
+              </li>
+            </ul>
           </li>
         </ul>
         <ul class="navbar-nav navbar-right">
