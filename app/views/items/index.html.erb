@@ -17,7 +17,6 @@
         <td><%= item.description %></td>
         <td><%= item.address.present? ? item.address.warehouse.try(:name) : '' %></td>
         <td><%= item.address.try(:name) %></td>
-        <td><%= button_to 'Разместить', get_address_item_path(item), method: :get %></td>
       </tr>
     <% end %>
   </tbody>

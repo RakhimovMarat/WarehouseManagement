@@ -2,7 +2,7 @@ class AddressesController < ApplicationController
   before_action :find_address, only: %i[show]
 
   def new
-    @address = Address.new
+    @address = Address.new(warehouse_id: params[:warehouse_id])
     @warehouses = Warehouse.all
   end
 

@@ -2,16 +2,16 @@
 <br />
 <%= form_with model: @address, local: true do |form| %>
   <div class="field">
-    <%= form.label :name, "Адрес" %>
-    <%= form.text_field :name %>
+    <p>
+      <%= form.text_field :name, placeholder: "Введите название адреса" %>
+    </p>
   </div>
 
-  <div class="field">
-    <%= form.label :warehouse_id, "Склад" %>
-    <%= form.collection_select :warehouse_id, @warehouses, :id, :name, prompt: 'Выберите склад' %>
-  </div>
+  <%= form.hidden_field :warehouse_id%>
   
   <div class="actions">
-    <%= form.submit "Создать адрес" %>
+    <p>
+      <%= form.submit "Создать адрес" %>
+    </p>
   </div>
 <% end %>

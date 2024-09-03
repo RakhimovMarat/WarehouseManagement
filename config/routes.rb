@@ -12,15 +12,10 @@ Rails.application.routes.draw do
   authenticate :user do
     resources :users
     resources :warehouses do
-      get :addresses,             on: :member
-      get :information,           on: :member
-      get :get_item,              on: :member
-      patch :add_item_to_address, on: :member
+      get :addresses,   on: :member
+      get :information, on: :member
     end
     resources :addresses
-    resources :items do
-      get :get_address,           on: :member
-      patch :put_item_on_address, on: :member
-    end
+    resources :items
   end
 end
