@@ -1,8 +1,13 @@
 class ItemsController < ApplicationController
-  before_action :find_item, only: %i[show get_address put_item_on_address]
+  before_action :find_item, only: %i[show]
 
   def index
     @items = Item.all
+    @grouped_items = Receipt.joins(:item, :address)
+                            .select('items.id as item_id, items.number, items.description, addresses.name as address_name, warehouses.name as warehouse_name, SUM(receipts.quantity) as total_quantity')
+                            .group('items.id, addresses.id, warehouses.id')
+                            .joins(address: :warehouse)
+                            .order('items.number')
   end
 
   def new
@@ -21,16 +26,6 @@ class ItemsController < ApplicationController
   end
 
   def show; end
-
-  def get_address
-    @addresses = Address.where.missing(:items)
-  end
-
-  def put_item_on_address
-    address_id = params[:item]&.dig(:address_id)
-    @item.update(address_id: address_id)
-    redirect_to @item
-  end
 
   private
 

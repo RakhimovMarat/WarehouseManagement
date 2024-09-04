@@ -1,0 +1,15 @@
+<p>
+  <%= @receipt.id %>
+</p>
+
+<p>
+  <%= @receipt.item.try(:number) %>
+</p>
+
+<p>
+  <%= @receipt.address.try(:name) %>
+</p>
+
+<p>
+  <%= @receipt.quantity %>
+</p>

@@ -17,5 +17,6 @@ Rails.application.routes.draw do
     end
     resources :addresses
     resources :items
+    resources :receipts
   end
 end

@@ -4,4 +4,5 @@ class Address < ApplicationRecord
 
   belongs_to :warehouse
   has_many :items
+  has_many :receipts
 end

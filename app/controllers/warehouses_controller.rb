@@ -1,5 +1,5 @@
 class WarehousesController < ApplicationController
-  before_action :find_warehouse, only: %i[show addresses information get_item add_item_to_address]
+  before_action :find_warehouse, only: %i[show addresses information]
 
   def index
     @warehouses = Warehouse.all
@@ -27,22 +27,6 @@ class WarehousesController < ApplicationController
   end
 
   def information; end
-
-  def get_item
-    @items = Item.left_joins(:address).where('addresses.warehouse_id != ? OR items.address_id IS NULL', @warehouse.id)
-    @addresses = Address.where(warehouse_id: @warehouse.id)
-  end
-
-  def add_item_to_address
-    item_id = params[:warehouse][:item_id]
-    address_id = params[:warehouse][:address_id]
-
-    @item = Item.find(item_id)
-    @address = Address.find(address_id)
-
-    @item.update(address_id: @address.id)
-    redirect_to @warehouse
-  end
 
   private
 

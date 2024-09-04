@@ -5,4 +5,5 @@ class Item < ApplicationRecord
   validates :description, presence: true
 
   belongs_to :address, optional: true
+  has_many :receipts
 end
