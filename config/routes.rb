@@ -12,11 +12,13 @@ Rails.application.routes.draw do
   authenticate :user do
     resources :users
     resources :warehouses do
-      get :addresses,   on: :member
-      get :information, on: :member
+      get :addresses,            on: :member
+      get :information,          on: :member
     end
     resources :addresses
     resources :items
-    resources :receipts
+    resources :receipts do
+      get :receipt_transactions, on: :member
+    end
   end
 end

@@ -20,6 +20,13 @@ class ReceiptsController < ApplicationController
 
   def show; end
 
+  def receipt_transactions
+    @receipt_transactions = Receipt.joins(:item, :address)
+                                   .includes(:item, :address)
+                                   .order(created_at: :desc)
+                                   .limit(10)
+  end
+
   private
 
   def receipt_params
