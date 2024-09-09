@@ -1,6 +1,12 @@
 class AddressesController < ApplicationController
   before_action :find_address, only: %i[show]
 
+  def index
+    warehouse = Warehouse.find(params[:warehouse_id])
+    addresses = warehouse.addresses
+    render json: addresses
+  end
+
   def new
     @address = Address.new(warehouse_id: params[:warehouse_id])
     @warehouses = Warehouse.all

@@ -3,7 +3,7 @@ class ReceiptsController < ApplicationController
 
   def new
     @receipt = Receipt.new
-    @addresses = Address.all
+    @warehouses = Warehouse.all
     @items = Item.all
   end
 
