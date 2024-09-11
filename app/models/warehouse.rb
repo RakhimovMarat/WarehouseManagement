@@ -3,7 +3,9 @@ class Warehouse < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
 
-  has_many :addresses
+  has_many :addresses, dependent: :destroy
+  has_many :receipts, through: :addresses
+  has_many :expenses, through: :addresses
 
   private
 

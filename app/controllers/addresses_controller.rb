@@ -2,10 +2,26 @@ class AddressesController < ApplicationController
   before_action :find_address, only: %i[show]
 
   def index
-    warehouse = Warehouse.find(params[:warehouse_id])
-    addresses = warehouse.addresses
+    warehouse_id = params[:warehouse_id].to_i
+    item_id = params[:item_id].to_i
+
+    logger.debug "warehouse_id: #{warehouse_id}, item_id: #{item_id}"
+
+    warehouse = Warehouse.find_by(id: warehouse_id)
+
+    if item_id > 0
+      addresses = warehouse.addresses.joins(:receipts)
+                                     .where(receipts: { item_id: item_id })
+                                     .distinct
+      logger.debug "Filtered addresses: #{addresses.map(&:id)}"
+    else
+      addresses = warehouse.addresses
+      logger.debug "All addresses: #{addresses.map(&:id)}"
+    end
+
     render json: addresses
   end
+
 
   def new
     @address = Address.new(warehouse_id: params[:warehouse_id])

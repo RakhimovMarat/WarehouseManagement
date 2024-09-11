@@ -20,5 +20,6 @@ Rails.application.routes.draw do
     resources :receipts do
       get :receipt_transactions, on: :member
     end
+    resources :expenses
   end
 end

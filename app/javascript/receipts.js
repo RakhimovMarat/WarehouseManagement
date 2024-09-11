@@ -27,6 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
           addressSelect.appendChild(option);
         });
       })
-      .catch(error => console.error('Ошибка', error));
+      .catch(error => console.error('Ошибка при загрузке адресов', error));
   });
 });
