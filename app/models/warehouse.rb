@@ -1,7 +1,8 @@
 class Warehouse < ApplicationRecord
-  before_save :capitalize_name
+  before_save :capitalize_name, :upcase_warehouse_code
 
   validates :name, presence: true, uniqueness: true
+  validates :warehouse_code, presence: true, uniqueness: true
 
   has_many :addresses, dependent: :destroy
   has_many :receipts, through: :addresses
@@ -11,5 +12,9 @@ class Warehouse < ApplicationRecord
 
   def capitalize_name
     self.name = name.downcase.capitalize
+  end
+
+  def upcase_warehouse_code
+    self.warehouse_code = warehouse_code.upcase
   end
 end

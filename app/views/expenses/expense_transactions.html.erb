@@ -1,0 +1,29 @@
+<h4>Транзакции выдачи товаров</h4>
+<br />
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Номер товара</th>
+      <th>Наименование товара</th>
+      <th>Склад</th>
+      <th>Адрес</th>
+      <th>Количество</th>
+      <th>Дата поступления</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @expense_transactions.each do |transaction| %>
+      <tr>
+        <td><%= transaction.id %></td>
+        <td><%= transaction.item.number %></td>
+        <td><%= transaction.item.description %></td>
+        <td><%= transaction.address.warehouse.name %></td>
+        <td><%= transaction.address.name %></td>
+        <td><%= transaction.quantity %></td>
+        <td><%= transaction.created_at.strftime("%d-%m-%Y %H:%M") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

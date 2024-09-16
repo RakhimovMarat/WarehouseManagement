@@ -18,8 +18,10 @@ Rails.application.routes.draw do
     resources :addresses
     resources :items
     resources :receipts do
-      get :receipt_transactions, on: :member
+      get :receipt_transactions, on: :collection
     end
-    resources :expenses
+    resources :expenses do
+      get :expense_transactions, on: :collection
+    end
   end
 end
