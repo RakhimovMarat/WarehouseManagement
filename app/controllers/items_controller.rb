@@ -3,11 +3,6 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all
-    @grouped_items = Receipt.joins(:item, :address)
-                            .select('items.id as item_id, items.number, items.description, addresses.name as address_name, warehouses.name as warehouse_name, SUM(receipts.quantity) as total_quantity')
-                            .group('items.id, addresses.id, warehouses.id')
-                            .joins(address: :warehouse)
-                            .order('items.number')
   end
 
   def new

@@ -1,0 +1,25 @@
+<h4>Остатки товаров на складах</h4>
+<br />
+<table class="table">
+  <thead>
+    <tr>
+      <th>Номер</th>
+      <th>Наименование</th>
+      <th>Склад</th>
+      <th>Адрес</th>
+      <th>Количество</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @stocks.each do |stock| %>
+      <tr>
+        <td><%= stock.item.number %></td>
+        <td><%= stock.item.description %></td>
+        <td><%= stock.address.warehouse.name %></td>
+        <td><%= stock.address.name %></td>
+        <td><%= stock.quantity %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

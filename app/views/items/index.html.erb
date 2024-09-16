@@ -5,20 +5,14 @@
     <tr>
       <th>Номер</th>
       <th>Наименование</th>
-      <th>Склад</th>
-      <th>Адрес</th>
-      <th>Количество</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
-    <% @grouped_items.each do |item| %>
+    <% @items.each do |item| %>
       <tr>
         <td><%= item.number %></td>
         <td><%= item.description %></td>
-        <td><%= item.warehouse_name %></td>
-        <td><%= item.address_name %></td>
-        <td><%= item.total_quantity %></td>
       </tr>
     <% end %>
   </tbody>

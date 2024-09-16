@@ -23,5 +23,6 @@ Rails.application.routes.draw do
     resources :expenses do
       get :expense_transactions, on: :collection
     end
+    resources :stocks
   end
 end
