@@ -2,16 +2,7 @@ class WarehousesController < ApplicationController
   before_action :find_warehouse, only: %i[show addresses information]
 
   def index
-    if params[:item_id].present?
-      item_id = params[:item_id].to_i
-      @warehouses = Warehouse.joins(:addresses)
-                             .joins(:receipts)
-                             .where(receipts: { item_id: item_id })
-                             .distinct
-      render json: @warehouses
-    else
-      @warehouses = Warehouse.all
-    end
+    @warehouses = Warehouse.all
   end
 
   def new
@@ -40,7 +31,7 @@ class WarehousesController < ApplicationController
   private
 
   def warehouse_params
-    params.require(:warehouse).permit(:name)
+    params.require(:warehouse).permit(:name, :warehouse_code)
   end
 
   def find_warehouse

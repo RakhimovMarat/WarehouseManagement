@@ -3,25 +3,19 @@
 <%= form_with model: @receipt, local: true do |form| %>
   <div class="field">
     <p>
-      <%= form.collection_select :item_id, @items, :id, :number, prompt: "Введите номер товара" %>
+      <%= form.text_field :number, placeholder: "Введите номер товара" %>
     </p>
   </div>
 
   <div class="field">
     <p>
-      <%= form.collection_select :warehouse_id, @warehouses, :id, :name, { prompt: "Введите склад" }, { id: "warehouse-select" } %>
+      <%= form.text_field :name, placeholder: "Введите адрес" %>
     </p>
   </div>
 
   <div class="field">
     <p>
-      <%= form.select :address_id, [], { prompt: "Сначала выберите склад" }, { id: "address-select" } %>
-    </p>
-  </div>
-
-  <div class="field">
-    <p>
-      <%= form.number_field :quantity %>
+      <%= form.number_field :quantity, min: 1, placeholder: "Введите количество" %>
     </p>
   </div>
   

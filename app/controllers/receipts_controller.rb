@@ -3,17 +3,26 @@ class ReceiptsController < ApplicationController
 
   def new
     @receipt = Receipt.new
-    @warehouses = Warehouse.all
+    @addresses = Address.all
     @items = Item.all
   end
 
   def create
-    @receipt = Receipt.new(receipt_params)
-    if @receipt.save
-      flash[:success] = 'Товар размещен'
-      redirect_to @receipt
+    @item = Item.find_by(number: params[:receipt][:number])
+    @address = Address.find_by(name: params[:receipt][:name])
+
+    if @item && @address
+      @receipt = Receipt.new(receipt_params.merge(item_id: @item.id, address_id: @address.id))
+
+      if @receipt.save
+        flash[:success] = 'Товар размещен'
+        redirect_to @receipt
+      else
+        flash.now[:error] = 'Товар не размещен'
+        render :new
+      end
     else
-      flash.now[:error] = 'Товар не размещен'
+      flash.now[:error] = 'Товар или адрес не найдены'
       render :new
     end
   end
@@ -30,7 +39,7 @@ class ReceiptsController < ApplicationController
   private
 
   def receipt_params
-    params.require(:receipt).permit(:address_id, :item_id, :quantity)
+    params.require(:receipt).permit(:quantity)
   end
 
   def find_receipt

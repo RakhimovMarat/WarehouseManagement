@@ -5,4 +5,5 @@ class Address < ApplicationRecord
   belongs_to :warehouse
   has_many :receipts, dependent: :destroy
   has_many :expenses, dependent: :destroy
+  has_many :stocks, dependent: :destroy
 end

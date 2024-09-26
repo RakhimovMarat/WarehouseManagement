@@ -1,0 +1,15 @@
+<p>
+  <%= @expense.id %>
+</p>
+
+<p>
+  <%= @expense.item.try(:number) %>
+</p>
+
+<p>
+  <%= @expense.address.try(:name) %>
+</p>
+
+<p>
+  <%= @expense.quantity %>
+</p>
