@@ -5,4 +5,5 @@ class Item < ApplicationRecord
   has_many :receipts, dependent: :destroy
   has_many :expenses, dependent: :destroy
   has_many :stocks, dependent: :destroy
+  has_many :relocates, dependent: :destroy
 end

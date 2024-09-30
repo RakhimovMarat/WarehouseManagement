@@ -12,8 +12,8 @@ Rails.application.routes.draw do
   authenticate :user do
     resources :users
     resources :warehouses do
-      get :addresses,            on: :member
-      get :information,          on: :member
+      get :addresses,   on: :member
+      get :information, on: :member
     end
     resources :addresses
     resources :items
@@ -22,6 +22,9 @@ Rails.application.routes.draw do
     end
     resources :expenses do
       get :expense_transactions, on: :collection
+    end
+    resources :relocates do
+      get :relocate_transactions, on: :collection
     end
     resources :stocks
   end
