@@ -15,8 +15,8 @@ class WarehousesController < ApplicationController
       flash[:success] = 'Новый склад создан'
       redirect_to @warehouse
     else
-      flash.now[:error] = 'Заполните все поля'
-      render :new
+      flash[:error] = 'Заполните все поля'
+      redirect_to new_warehouse_path
     end
   end
 

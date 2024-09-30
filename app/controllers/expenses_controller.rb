@@ -18,12 +18,12 @@ class ExpensesController < ApplicationController
         flash[:success] = 'Товар выдан'
         redirect_to @expense
       else
-        flash.now[:error] = 'Товар не выдан'
-        render :new
+        flash[:error] = @expense.errors.full_messages.to_sentence
+        redirect_to new_expense_path
       end
     else
-      flash.now[:error] = 'Товар или адрес не найдены'
-      render :new
+      flash[:error] = 'Товар или адрес не найдены'
+      redirect_to new_expense_path
     end
   end
 

@@ -15,8 +15,8 @@ class ItemsController < ApplicationController
       flash[:success] = 'Новый товар создан'
       redirect_to @item
     else
-      flash.now[:error] = 'Заполните все поля'
-      render :new
+      flash[:error] = 'Заполните все поля'
+      redirect_to new_item_path
     end
   end
 

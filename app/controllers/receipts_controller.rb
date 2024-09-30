@@ -18,12 +18,12 @@ class ReceiptsController < ApplicationController
         flash[:success] = 'Товар размещен'
         redirect_to @receipt
       else
-        flash.now[:error] = 'Товар не размещен'
-        render :new
+        flash[:error] = 'Товар не размещен'
+        redirect_to new_receipt_path
       end
     else
-      flash.now[:error] = 'Товар или адрес не найдены'
-      render :new
+      flash[:error] = 'Товар или адрес не найдены'
+      redirect_to new_receipt_path
     end
   end
 

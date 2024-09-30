@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  relocated_to: MyString
+  item: one
+  address: one
+
+two:
+  relocated_to: MyString
+  item: two
+  address: two
