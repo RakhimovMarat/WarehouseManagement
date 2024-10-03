@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -10,6 +12,8 @@ Rails.application.routes.draw do
    root "items#index"
 
   authenticate :user do
+    mount Sidekiq::Web => '/sidekiq'
+
     resources :users
     resources :warehouses do
       get :addresses,   on: :member
@@ -27,5 +31,10 @@ Rails.application.routes.draw do
       get :relocate_transactions, on: :collection
     end
     resources :stocks
+    resources :orders do
+      patch :update_quantity,   on: :member
+      patch :order_cancelation, on: :member
+      get :get_order,           on: :member
+    end
   end
 end
