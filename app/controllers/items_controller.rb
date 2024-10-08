@@ -7,10 +7,12 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
+    authorize @item
   end
 
   def create
     @item = Item.new(item_params)
+    authorize @item
     if @item.save
       flash[:success] = 'Новый товар создан'
       redirect_to @item
@@ -22,9 +24,12 @@ class ItemsController < ApplicationController
 
   def show; end
 
-  def edit; end
+  def edit
+    authorize @item
+  end
 
   def update
+    authorize @item
     if @item.update(item_params)
       flash[:success] = 'Данные изменены'
       redirect_to @item

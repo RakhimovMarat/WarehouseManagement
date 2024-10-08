@@ -7,10 +7,12 @@ class WarehousesController < ApplicationController
 
   def new
     @warehouse = Warehouse.new
+    authorize @warehouse
   end
 
   def create
     @warehouse = Warehouse.new(warehouse_params)
+    authorize @warehouse
     if @warehouse.save
       flash[:success] = 'Новый склад создан'
       redirect_to @warehouse

@@ -73,3 +73,5 @@ gem 'mini_racer'
 gem 'sassc-rails'
 gem 'popper_js'
 gem 'sidekiq'
+
+gem "pundit", "~> 2.4"

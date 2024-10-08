@@ -6,9 +6,12 @@ class OrdersController < ApplicationController
 
   def show; end
 
-  def edit; end
+  def edit
+    authorize @order
+  end
 
   def update_quantity
+    authorize @order
     if @order.status.in?(["created", "confirmed"])
       if @order.update(order_params)
         @order.update(status: 'confirmed')
@@ -24,9 +27,12 @@ class OrdersController < ApplicationController
     end
   end
 
-  def get_order; end
+  def get_order
+    authorize @order
+  end
 
   def order_cancelation
+    authorize @order
     if @order.update(status: 'canceled')
       flash[:success] = 'Заказ отменен'
       redirect_to @order

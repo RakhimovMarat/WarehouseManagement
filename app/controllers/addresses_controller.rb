@@ -4,10 +4,12 @@ class AddressesController < ApplicationController
   def new
     @address = Address.new(warehouse_id: params[:warehouse_id])
     @warehouses = Warehouse.all
+    authorize @address
   end
 
   def create
     @address = Address.new(address_params)
+    authorize @address
     warehouse = Warehouse.find(@address.warehouse_id)
     @address.name = "#{warehouse.warehouse_code}-#{@address.name}"
 
