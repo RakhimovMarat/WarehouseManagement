@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :find_item, only: %i[show]
+  before_action :find_item, only: %i[show edit update]
 
   def index
     @items = Item.all
@@ -22,10 +22,22 @@ class ItemsController < ApplicationController
 
   def show; end
 
+  def edit; end
+
+  def update
+    if @item.update(item_params)
+      flash[:success] = 'Данные изменены'
+      redirect_to @item
+    else
+      flash[:error] = 'Данные не изменены'
+      redirect_to edit_item_path(@item)
+    end
+  end
+
   private
 
   def item_params
-    params.require(:item).permit(:number, :description)
+    params.require(:item).permit(:number, :description, :minimal_quantity)
   end
 
   def find_item

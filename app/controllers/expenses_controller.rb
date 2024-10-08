@@ -15,6 +15,8 @@ class ExpensesController < ApplicationController
       @expense = Expense.new(expense_params.merge(item_id: @item.id, address_id: @address.id))
 
       if @expense.save
+        CreateOrderJob.perform_later(@expense.id)
+
         flash[:success] = 'Товар выдан'
         redirect_to @expense
       else

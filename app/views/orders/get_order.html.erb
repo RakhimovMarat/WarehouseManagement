@@ -1,0 +1,33 @@
+<h4>Отмена заказа</h4>
+<br />
+<%= form_with(model: @order, url: order_cancelation_order_path(@order), method: :patch, local: true) do |form| %>
+  <div class="field">
+    <p>
+      <td><%= @order.id %></td>
+    </p>
+  </div>
+
+  <div class="field">
+    <p>
+      <td><%= @order.item.number %></td>
+    </p>
+  </div>
+
+  <div class="field">
+    <p>
+      <td><%= @order.status %></td>
+    </p>
+  </div>
+
+  <div class="field">
+    <p>
+      <td><%= @order.quantity %></td>
+    </p>
+  </div>
+  
+  <div class="actions">
+    <p>
+      <%= form.submit "Подтвердить" %>
+    </p>
+  </div>
+<% end %>
