@@ -17,6 +17,7 @@ class CreateOrderJob < ApplicationJob
     if stock_quantity <= minimal_quantity && !order_for_item_exists?(item)
       order = Order.create(item_id: item.id, status: 'created')
       p "=== Заказ создан #{order.id} для товара #{item.number} ==="
+      OrderMailer.order_created(order).deliver_now
     else
       p "==== Заказ не создан. Достаточное количество на складе: #{stock_quantity}, минимальное количество: #{minimal_quantity}"
     end
