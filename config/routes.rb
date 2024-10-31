@@ -15,22 +15,36 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
 
     resources :users
+
     resources :warehouses do
       get :addresses,   on: :member
       get :information, on: :member
     end
-    resources :addresses
-    resources :items
+
+    resources :addresses do
+      get :import_addresses, on: :collection
+      post :import,          on: :collection
+    end
+
+    resources :items do
+      get :import_items, on: :collection
+      post :import,      on: :collection
+    end
+
     resources :receipts do
       get :receipt_transactions, on: :collection
     end
+
     resources :expenses do
       get :expense_transactions, on: :collection
     end
+
     resources :relocates do
       get :relocate_transactions, on: :collection
     end
+
     resources :stocks
+
     resources :orders do
       patch :update_quantity,   on: :member
       patch :order_cancelation, on: :member

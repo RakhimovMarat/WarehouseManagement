@@ -25,6 +25,23 @@ class AddressesController < ApplicationController
 
   def show; end
 
+  def import_addresses
+    @warehouses = Warehouse.all
+  end
+
+  def import
+    file = params[:file]
+    warehouse = Warehouse.find(params[:warehouse_id])
+
+    if file.content_type == "text/csv"
+      CsvImportAddressesService.new.call(file, warehouse)
+      flash[:success] = 'Адреса загружены'
+    else
+      flash[:error] = 'Только файл формата csv'
+    end
+    redirect_to import_addresses_addresses_path
+  end
+
   private
 
   def address_params

@@ -1,0 +1,6 @@
+<h4>Загрузка товара</h4>
+<br />
+<%= form_with url: import_items_path, method: :post do |form| %>
+  <%= form.file_field :file, accept: ".csv" %>
+  <%= form.button "Загрузить" %>
+<% end %>
