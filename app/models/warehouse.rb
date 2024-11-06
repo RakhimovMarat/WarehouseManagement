@@ -11,10 +11,10 @@ class Warehouse < ApplicationRecord
   private
 
   def capitalize_name
-    self.name = name.downcase.capitalize
+    self.name = name.downcase.capitalize if name.present?
   end
 
   def upcase_warehouse_code
-    self.warehouse_code = warehouse_code.upcase
+    self.warehouse_code = warehouse_code.upcase if warehouse_code.present?
   end
 end
