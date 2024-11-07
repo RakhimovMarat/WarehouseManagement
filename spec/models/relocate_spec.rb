@@ -25,7 +25,7 @@ RSpec.describe Relocate, type: :model do
       Stock.create(item: item, address: address_to, quantity: 2)
     end
 
-    it 'calls check_stock callback after save' do
+    it 'calls check_stock callback before save' do
       allow(relocate).to receive(:check_stock)
 
       relocate.save
@@ -33,7 +33,7 @@ RSpec.describe Relocate, type: :model do
       expect(relocate).to have_received(:check_stock)
     end
 
-    it 'calls update_stock callback before save' do
+    it 'calls update_stock callback after save' do
       expect_any_instance_of(Relocate).to receive(:update_stock)
 
       relocate.save
