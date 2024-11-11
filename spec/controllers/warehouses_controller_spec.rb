@@ -23,7 +23,8 @@ RSpec.describe WarehousesController, type: :controller do
     end
 
     context 'with invalid attributes' do
-      let(:warehouse_attributes) { attributes_for(:warehouse, invalid_attribute: 'invalid value') }
+      let(:warehouse_attributes) { attributes_for(:warehouse, name: '') }
+      subject { post :create, params: { warehouse: warehouse_attributes } }
 
       it 'does not create new warehouse' do
         expect {subject}.not_to change(Warehouse, :count)
