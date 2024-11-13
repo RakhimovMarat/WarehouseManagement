@@ -15,10 +15,10 @@ class ReceiptsController < ApplicationController
       @receipt = Receipt.new(receipt_params.merge(item_id: @item.id, address_id: @address.id))
 
       if @receipt.save
-        flash[:success] = 'Товар размещен'
+        flash[:success] = 'Товар перемещен'
         redirect_to @receipt
       else
-        flash[:error] = 'Товар не размещен'
+        flash[:error] = 'Товар не перемещен'
         redirect_to new_receipt_path
       end
     else

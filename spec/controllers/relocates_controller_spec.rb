@@ -16,17 +16,16 @@ RSpec.describe RelocatesController, type: :controller do
 
   describe 'POST #create' do
     context 'with valid attributes' do
+      let(:relocate_attributes) do
+        {
+          number: item.number,
+          name: address_from.name,
+          relocated_to: address_to.name,
+          quantity: 5
+        }
+      end
     
-    let(:relocate_attributes) do
-      {
-        number: item.number,
-        name: address_from.name,
-        relocated_to: address_to.name,
-        quantity: 5
-      }
-    end
-    
-    subject { post :create, params: { relocate: relocate_attributes } }
+      subject { post :create, params: { relocate: relocate_attributes } }
 
       it 'creates new relocate' do
         expect { subject }.to change(Relocate, :count).by(1)
@@ -39,7 +38,7 @@ RSpec.describe RelocatesController, type: :controller do
     end
 
     context 'with invalid attributes' do
-      let(:relocate_attributes) { attributes_for(:relocate, item: '') }
+      let(:relocate_attributes) { attributes_for(:relocate, item: nil) }
       subject { post :create, params: { relocate: relocate_attributes } }
 
       it 'does not create new relocate' do
