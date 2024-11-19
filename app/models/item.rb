@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Item < ApplicationRecord
   validates :number, presence: true, uniqueness: true
   validates :description, presence: true

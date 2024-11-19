@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Relocate < ApplicationRecord
   validates :quantity, presence: true, numericality: { greater_than: 0 }
   validates :relocated_to, presence: true

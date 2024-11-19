@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RelocatesController < ApplicationController
   before_action :find_relocate, only: %i[show]
 
@@ -12,11 +14,10 @@ class RelocatesController < ApplicationController
 
     if @item && @address_from && @address_to
       @relocate = Relocate.new(relocate_params.merge(
-                                                    item_id: @item.id,
-                                                    address_id: @address_from.id,
-                                                    relocated_to_id: @address_to.id
-                                                    )
-                              )
+                                 item_id: @item.id,
+                                 address_id: @address_from.id,
+                                 relocated_to_id: @address_to.id
+                               ))
 
       if @relocate.save
         flash[:success] = 'Товар перемещен'

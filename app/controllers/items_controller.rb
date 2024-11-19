@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ItemsController < ApplicationController
   before_action :find_item, only: %i[show edit update]
 
@@ -44,7 +46,7 @@ class ItemsController < ApplicationController
   def import
     file = params[:file]
 
-    if file.content_type == "text/csv"
+    if file.content_type == 'text/csv'
       CsvImportItemsService.new.call(file)
       flash[:success] = 'Товары загружены'
     else

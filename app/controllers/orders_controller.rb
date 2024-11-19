@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OrdersController < ApplicationController
   before_action :find_order, only: %i[show edit update_quantity get_order order_cancelation]
   def index
@@ -12,7 +14,7 @@ class OrdersController < ApplicationController
 
   def update_quantity
     authorize @order
-    if @order.status.in?(["created", "confirmed"])
+    if @order.status.in?(%w[created confirmed])
       if @order.update(order_params)
         @order.update(status: 'confirmed')
         flash[:success] = 'Данные изменены'
@@ -42,7 +44,7 @@ class OrdersController < ApplicationController
     end
   end
 
-   private
+  private
 
   def order_params
     params.require(:order).permit(:quantity, :status)

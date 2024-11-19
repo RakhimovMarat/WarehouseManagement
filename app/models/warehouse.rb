@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Warehouse < ApplicationRecord
   before_save :capitalize_name, :upcase_warehouse_code
 

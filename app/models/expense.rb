@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Expense < ApplicationRecord
   validates :quantity, presence: true, numericality: { greater_than: 0 }
 

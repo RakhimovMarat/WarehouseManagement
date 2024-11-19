@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ReceiptsController, type: :controller do
@@ -15,7 +17,7 @@ RSpec.describe ReceiptsController, type: :controller do
   describe 'POST #create' do
     context 'with valid attributes' do
       let(:receipt_attributes) { { number: item.number, name: address.name, quantity: 5 } }
-    
+
       subject { post :create, params: { receipt: receipt_attributes } }
 
       it 'creates new receipt' do

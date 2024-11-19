@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateOrderJob < ApplicationJob
   queue_as :default
 
@@ -18,6 +20,6 @@ class CreateOrderJob < ApplicationJob
   private
 
   def order_for_item_exists?(item)
-    Order.exists?(item_id: item.id, status: ['created', 'confirmed'])
+    Order.exists?(item_id: item.id, status: %w[created confirmed])
   end
 end

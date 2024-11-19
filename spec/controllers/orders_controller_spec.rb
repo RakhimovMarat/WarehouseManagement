@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe OrdersController, type: :controller do
-  let(:user)  {create(:user)}
-  let(:item)  {create(:item)}
+  let(:user)  { create(:user) }
+  let(:item)  { create(:item) }
 
   before do
     sign_in user
@@ -10,7 +12,7 @@ RSpec.describe OrdersController, type: :controller do
 
   describe 'PATCH #update_quantity' do
     context 'when order has status "created" or "confirmed"' do
-      let(:order) {create(:order, item: item)}
+      let(:order) { create(:order, item: item) }
       let(:order_attributes) { { quantity: 100 } }
 
       before do
@@ -29,7 +31,7 @@ RSpec.describe OrdersController, type: :controller do
     end
 
     context 'when order has no status "created" or "confirmed"' do
-      let(:order) {create(:order, item: item, status: 'finished')}
+      let(:order) { create(:order, item: item, status: 'finished') }
       let(:order_attributes) { { quantity: 100 } }
 
       before do

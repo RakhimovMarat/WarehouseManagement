@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ReceiptsController < ApplicationController
   before_action :find_receipt, only: %i[show]
 

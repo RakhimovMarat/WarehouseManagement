@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class WarehousesController < ApplicationController
   before_action :find_warehouse, only: %i[show addresses information]
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateRelocates < ActiveRecord::Migration[7.1]
   def change
     create_table :relocates do |t|

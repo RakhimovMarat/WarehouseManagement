@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ItemsController, type: :controller do
@@ -28,7 +30,7 @@ RSpec.describe ItemsController, type: :controller do
       subject { post :create, params: { item: item_attributes } }
 
       it 'does not create new item' do
-        expect {subject}.not_to change(Item, :count)
+        expect { subject }.not_to change(Item, :count)
       end
 
       it 'sets an error flash message' do

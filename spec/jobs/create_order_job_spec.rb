@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe CreateOrderJob, type: :job do
@@ -16,9 +18,9 @@ RSpec.describe CreateOrderJob, type: :job do
     end
 
     it 'creates an order and sends an email' do
-      expect {
+      expect do
         described_class.perform_now(expense.id)
-      }.to change(Order, :count).by(1)
+      end.to change(Order, :count).by(1)
 
       order = Order.last
       expect(order.item_id).to eq(item.id)
@@ -33,9 +35,9 @@ RSpec.describe CreateOrderJob, type: :job do
     end
 
     it 'does not create an order' do
-      expect {
+      expect do
         described_class.perform_now(expense.id)
-      }.not_to change(Order, :count)
+      end.not_to change(Order, :count)
     end
   end
 
@@ -46,9 +48,9 @@ RSpec.describe CreateOrderJob, type: :job do
     end
 
     it 'does not create a duplicate order' do
-      expect {
+      expect do
         described_class.perform_now(expense.id)
-      }.not_to change(Order, :count)
+      end.not_to change(Order, :count)
     end
   end
 end

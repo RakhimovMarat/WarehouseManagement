@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe RelocatesController, type: :controller do
@@ -24,7 +26,7 @@ RSpec.describe RelocatesController, type: :controller do
           quantity: 5
         }
       end
-    
+
       subject { post :create, params: { relocate: relocate_attributes } }
 
       it 'creates new relocate' do

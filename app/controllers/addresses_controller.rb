@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddressesController < ApplicationController
   before_action :find_address, only: %i[show]
 
@@ -10,12 +12,12 @@ class AddressesController < ApplicationController
   def create
     @address = Address.new(address_params)
     authorize @address
-  
+
     if @address.valid?
       warehouse = Warehouse.find(@address.warehouse_id)
       @address.name = "#{warehouse.warehouse_code}-#{@address.name}"
     end
-  
+
     if @address.save
       flash[:success] = 'Новый склад создан'
       redirect_to @address
@@ -48,7 +50,7 @@ class AddressesController < ApplicationController
     file = params[:file]
     warehouse = Warehouse.find(params[:warehouse_id])
 
-    if file.content_type == "text/csv"
+    if file.content_type == 'text/csv'
       CsvImportAddressesService.new.call(file, warehouse)
       flash[:success] = 'Адреса загружены'
     else
@@ -66,5 +68,4 @@ class AddressesController < ApplicationController
   def find_address
     @address = Address.find_by(id: params[:id])
   end
-
 end
