@@ -49,7 +49,7 @@ RSpec.describe OrdersController, type: :controller do
 
   describe 'PATCH #order_cancelation' do
     context 'when order is successfully canceled' do
-      let(:order) {create(:order, item: item)}
+      let(:order) { create(:order, item: item) }
       let(:order_attributes) { { status: 'canceled' } }
 
       before do

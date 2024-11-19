@@ -10,17 +10,32 @@ class AddressesController < ApplicationController
   def create
     @address = Address.new(address_params)
     authorize @address
-    warehouse = Warehouse.find(@address.warehouse_id)
-    @address.name = "#{warehouse.warehouse_code}-#{@address.name}"
-
-    if @address.name.length > 5
-      @address.save
+  
+    if @address.valid?
+      warehouse = Warehouse.find(@address.warehouse_id)
+      @address.name = "#{warehouse.warehouse_code}-#{@address.name}"
+    end
+  
+    if @address.save
       flash[:success] = 'Новый склад создан'
       redirect_to @address
     else
       flash[:error] = 'Заполните все поля'
       redirect_to new_address_path
     end
+
+    # if @address.name.length > 5
+    #   if @address.save
+    #     flash[:success] = 'Новый склад создан'
+    #     redirect_to @address
+    #   else
+    #     flash[:error] = 'Заполните все поля'
+    #     redirect_to new_address_path
+    #   end
+    # else
+    #   flash[:error] = 'Имя должно быть больше 5 символов'
+    #   redirect_to new_address_path
+    # end
   end
 
   def show; end

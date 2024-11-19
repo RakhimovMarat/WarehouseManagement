@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ReceiptsController, type: :controller do
+RSpec.describe ExpensesController, type: :controller do
   let(:user)      { create(:user) }
   let(:warehouse) { create(:warehouse) }
   let(:item)      { create(:item) }
@@ -14,26 +14,26 @@ RSpec.describe ReceiptsController, type: :controller do
 
   describe 'POST #create' do
     context 'with valid attributes' do
-      let(:receipt_attributes) { { number: item.number, name: address.name, quantity: 5 } }
-    
-      subject { post :create, params: { receipt: receipt_attributes } }
+      let(:expense_attributes) { { number: item.number, name: address.name, quantity: 3 } }
 
-      it 'creates new receipt' do
-        expect { subject }.to change(Receipt, :count).by(1)
+      subject { post :create, params: { expense: expense_attributes } }
+
+      it 'creates new expense' do
+        expect { subject }.to change(Expense, :count).by(1)
       end
 
       it 'sets a success flash message' do
         subject
-        expect(flash[:success]).to eq('Товар перемещен')
+        expect(flash[:success]).to eq('Товар выдан')
       end
     end
 
     context 'with invalid attributes' do
-      let(:receipt_attributes) { attributes_for(:receipt, item: nil) }
-      subject { post :create, params: { receipt: receipt_attributes } }
+      let(:expense_attributes) { attributes_for(:expense, item: nil) }
+      subject { post :create, params: { expense: expense_attributes } }
 
-      it 'does not create new receipt' do
-        expect { subject }.not_to change(Receipt, :count)
+      it 'does not create new expense' do
+        expect { subject }.not_to change(Expense, :count)
       end
 
       it 'sets an error flash message' do

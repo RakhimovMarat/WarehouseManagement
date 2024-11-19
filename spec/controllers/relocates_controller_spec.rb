@@ -42,7 +42,7 @@ RSpec.describe RelocatesController, type: :controller do
       subject { post :create, params: { relocate: relocate_attributes } }
 
       it 'does not create new relocate' do
-        expect {subject}.not_to change(Relocate, :count)
+        expect { subject }.not_to change(Relocate, :count)
       end
 
       it 'sets an error flash message' do

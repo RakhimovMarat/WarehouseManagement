@@ -24,7 +24,7 @@ RSpec.describe ItemsController, type: :controller do
     end
 
     context 'with valid attributes' do
-      let(:item_attributes) { attributes_for(:item, number: '') }
+      let(:item_attributes) { attributes_for(:item, number: nil) }
       subject { post :create, params: { item: item_attributes } }
 
       it 'does not create new item' do
