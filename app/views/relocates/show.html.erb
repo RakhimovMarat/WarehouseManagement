@@ -11,7 +11,7 @@
 </p>
 
 <p>
-  <%= @relocate.relocated_to %>
+  <%= @relocate.relocated_to.try(:name) %>
 </p>
 
 <p>

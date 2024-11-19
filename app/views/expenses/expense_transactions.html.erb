@@ -10,6 +10,7 @@
       <th>Адрес</th>
       <th>Количество</th>
       <th>Дата поступления</th>
+      <th>Ответственный</th>
       <th></th>
     </tr>
   </thead>
@@ -23,6 +24,7 @@
         <td><%= transaction.address.name %></td>
         <td><%= transaction.quantity %></td>
         <td><%= transaction.created_at.strftime("%d-%m-%Y %H:%M") %></td>
+        <td><%= transaction.responsible %></td>
       </tr>
     <% end %>
   </tbody>

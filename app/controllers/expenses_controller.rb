@@ -14,7 +14,8 @@ class ExpensesController < ApplicationController
     @address = Address.find_by(name: params[:expense][:name])
 
     if @item && @address
-      @expense = Expense.new(expense_params.merge(item_id: @item.id, address_id: @address.id))
+      @expense = Expense.new(expense_params.merge(item_id: @item.id, address_id: @address.id,
+                                                  responsible: current_user.username))
 
       if @expense.save
         CreateOrderJob.perform_later(@expense.id)
@@ -43,7 +44,7 @@ class ExpensesController < ApplicationController
   private
 
   def expense_params
-    params.require(:expense).permit(:quantity)
+    params.require(:expense).permit(:quantity, :responsible)
   end
 
   def find_expense

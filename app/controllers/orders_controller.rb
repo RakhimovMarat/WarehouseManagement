@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
     authorize @order
     if @order.status.in?(%w[created confirmed])
       if @order.update(order_params)
-        @order.update(status: 'confirmed')
+        @order.update(status: 'confirmed', responsible: current_user.username)
         flash[:success] = 'Данные изменены'
         redirect_to @order
       else
@@ -47,7 +47,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:quantity, :status)
+    params.require(:order).permit(:quantity, :status, :responsible)
   end
 
   def find_order

@@ -7,6 +7,7 @@
       <th>Номер товара</th>
       <th>Количество</th>
       <th>Статус</th>
+      <th>Ответственный</th>
       <th></th>
       <th></th>
     </tr>
@@ -18,6 +19,7 @@
         <td><%= order.item.number %></td>
         <td><%= order.quantity %></td>
         <td><%= order.status %></td>
+        <td><%= order.responsible %></td>
         <td><%= link_to 'Редактировать', edit_order_path(order) %></td>
         <td><%= link_to 'Отменить', get_order_order_path(order) %></td>
       </tr>

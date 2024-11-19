@@ -16,7 +16,8 @@ class RelocatesController < ApplicationController
       @relocate = Relocate.new(relocate_params.merge(
                                  item_id: @item.id,
                                  address_id: @address_from.id,
-                                 relocated_to_id: @address_to.id
+                                 relocated_to_id: @address_to.id,
+                                 responsible: current_user.username
                                ))
 
       if @relocate.save
@@ -34,10 +35,17 @@ class RelocatesController < ApplicationController
 
   def show; end
 
+  def relocate_transactions
+    @relocate_transactions = Relocate.joins(:item, :address)
+                                     .includes(:item, :address)
+                                     .order(created_at: :desc)
+                                     .limit(10)
+  end
+
   private
 
   def relocate_params
-    params.require(:relocate).permit(:quantity)
+    params.require(:relocate).permit(:quantity, :responsible)
   end
 
   def find_relocate

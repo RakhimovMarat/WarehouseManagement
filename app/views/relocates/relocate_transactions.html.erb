@@ -1,4 +1,4 @@
-<h4>Транзакции поступления товаров</h4>
+<h4>Транзакции перемещения товаров</h4>
 <br />
 <table class="table">
   <thead>
@@ -7,7 +7,8 @@
       <th>Номер товара</th>
       <th>Наименование товара</th>
       <th>Склад</th>
-      <th>Адрес</th>
+      <th>Адрес отправки</th>
+      <th>Адрес назначения</th>
       <th>Количество</th>
       <th>Дата поступления</th>
       <th>Ответственный</th>
@@ -15,13 +16,14 @@
     </tr>
   </thead>
   <tbody>
-    <% @receipt_transactions.each do |transaction| %>
+    <% @relocate_transactions.each do |transaction| %>
       <tr>
         <td><%= transaction.id %></td>
         <td><%= transaction.item.number %></td>
         <td><%= transaction.item.description %></td>
         <td><%= transaction.address.warehouse.name %></td>
         <td><%= transaction.address.name %></td>
+        <td><%= transaction.relocated_to.name %></td>
         <td><%= transaction.quantity %></td>
         <td><%= transaction.created_at.strftime("%d-%m-%Y %H:%M") %></td>
         <td><%= transaction.responsible %></td>

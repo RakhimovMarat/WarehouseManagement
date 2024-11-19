@@ -3,5 +3,6 @@
 FactoryBot.define do
   factory :expense do
     quantity { 5 }
+    responsible { 'Username' }
   end
 end

@@ -14,7 +14,8 @@ class ReceiptsController < ApplicationController
     @address = Address.find_by(name: params[:receipt][:name])
 
     if @item && @address
-      @receipt = Receipt.new(receipt_params.merge(item_id: @item.id, address_id: @address.id))
+      @receipt = Receipt.new(receipt_params.merge(item_id: @item.id, address_id: @address.id,
+                                                  responsible: current_user.username))
 
       if @receipt.save
         flash[:success] = 'Товар перемещен'
@@ -41,7 +42,7 @@ class ReceiptsController < ApplicationController
   private
 
   def receipt_params
-    params.require(:receipt).permit(:quantity)
+    params.require(:receipt).permit(:quantity, :responsible)
   end
 
   def find_receipt
